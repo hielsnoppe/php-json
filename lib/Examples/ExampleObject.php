@@ -32,9 +32,17 @@ class ExampleObject implements \JsonSerializable {
     protected $ducks;
 
     /**
-     * ExampleDictionary
+     * @var ExampleDictionary
      */
     protected $words;
+
+    protected $schema = array(
+        'properties' => [
+            'name' => [
+                'property' => 'name'
+            ]
+        ]
+    );
 
     public function __construct () {
 
