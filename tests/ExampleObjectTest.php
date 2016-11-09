@@ -1,14 +1,17 @@
 <?php
 
-namespace NielsHoppe\JSON;
+namespace NielsHoppe\JSON\Examples;
 
-use \NielsHoppe\JSON\Examples\ExampleObject;
+use \NielsHoppe\JSON\PHPUnit\ObjectTraitTest;
 
-class ExampleObjectTest extends \PHPUnit_Framework_TestCase {
+//class ExampleObjectTest extends \PHPUnit_Framework_TestCase {
+class ExampleObjectTest extends ObjectTraitTest {
+
+    static $class = ExampleObject::class;
 
     public function testMain () {
 
-        $obj = new ExampleObject(null);
+        $obj = new ExampleObject();
 
         $actual = $obj->jsonSerialize();
         $expected = array(
@@ -23,9 +26,12 @@ class ExampleObjectTest extends \PHPUnit_Framework_TestCase {
                 'Huey' => 'Tick',
                 'Dewey' => 'Trick',
                 'Louie' => 'Track'
-            )
+            ),
+            'greeting' => 'hello'
         );
 
-        $this->assertEquals($expected, $actual, '');
+        $this->assertEquals($expected, $actual,
+            ''
+        );
     }
 }

@@ -4,13 +4,15 @@ namespace NielsHoppe\JSON;
 
 use \NielsHoppe\JSON\Traits\SimpleTypeTrait;
 
+class TestObject {
+    use SimpleTypeTrait;
+}
+
 class SimpleTypeTraitTest extends \PHPUnit_Framework_TestCase {
 
     public function testConstruct () {
 
-        $obj = new class {
-            use SimpleTypeTrait;
-        };
+        $obj = new TestObject();
 
         $this->assertAttributeEquals(null, 'value', $obj);
         $this->assertAttributeEquals(false, 'isset', $obj);
