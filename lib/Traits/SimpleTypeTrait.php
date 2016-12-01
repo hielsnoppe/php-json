@@ -5,10 +5,9 @@ namespace NielsHoppe\JSON\Traits;
 trait SimpleTypeTrait {
 
     /**
-     * @var bool
+     * @var mixed
      */
     private $value = null;
-
     /**
      * @var bool
      */
@@ -16,7 +15,7 @@ trait SimpleTypeTrait {
 
     /**
      * Returns the value of this
-     * @return bool
+     * @return mixed | null
      */
     public function get () {
 
@@ -30,7 +29,12 @@ trait SimpleTypeTrait {
      */
     public function is ($value) {
 
-        return $this->value === boolval($value);
+        if ($this->isset) {
+
+            return $this->value === $value;
+        }
+
+        return false;
     }
 
     /**
@@ -40,6 +44,25 @@ trait SimpleTypeTrait {
     public function set ($value) {
 
         $this->value = boolval($value);
+        $this->isset = true;
+    }
+
+    /**
+     * Unsets the value of this
+     */
+    public function clear () {
+
+        $this->value = null;
+        $this->isset = false;
+    }
+
+    /**
+     * Test whether the value of this is set
+     * @return bool
+     */
+    public function test () {
+
+        return $this->isset;
     }
 
     /**

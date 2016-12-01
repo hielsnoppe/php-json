@@ -36,9 +36,9 @@ class SimpleTypeTraitTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testSet
      */
-    public function testUnset ($obj) {
+    public function testClear ($obj) {
 
-        $obj->unset();
+        $obj->clear();
 
         $this->assertAttributeEquals(null, 'value', $obj);
         $this->assertAttributeEquals(false, 'isset', $obj);
@@ -49,18 +49,18 @@ class SimpleTypeTraitTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testConstruct
      * @depends testSet
-     * @depends testUnset
+     * @depends testClear
      */
-    public function testIsset ($obj) {
+    public function testTest ($obj) {
 
-        $this->assertEquals(false, $obj->isset());
+        $this->assertEquals(false, $obj->test());
 
         $obj->set(0);
 
-        $this->assertEquals(true, $obj->isset());
+        $this->assertEquals(true, $obj->test());
 
-        $obj->unset();
+        $obj->clear();
 
-        $this->assertEquals(false, $obj->isset());
+        $this->assertEquals(false, $obj->test());
     }
 }
